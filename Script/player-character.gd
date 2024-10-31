@@ -8,6 +8,7 @@ var TOP_BOUNDARY = 50
 var BOTTOM_BOUNDARY = 750
 
 var char_just_moved = false
+var is_wasd_enabled = false
 
 var DIRECTIONS = ["UP", "RIGHT", "DOWN", "LEFT"]
 
@@ -22,44 +23,42 @@ func _ready():
 func _process(delta):
 	if char_just_moved:
 		pass
-	elif Input.is_action_pressed("move_down") && position.y != BOTTOM_BOUNDARY:
-		move_down()
-	elif Input.is_action_pressed("move_up") && position.y != TOP_BOUNDARY:
-		move_up()
-	elif Input.is_action_pressed("move_left") && position.x != LEFT_BOUNDARY:
-		move_left()
-	elif Input.is_action_pressed("move_right") && position.x != RIGHT_BOUNDARY:
-		move_right()
+	elif is_wasd_enabled:
+		moving()
 	
 	if !Input.is_anything_pressed():
 		idle()
 		
 
 func move_up():
-	curr_direction = DIRECTIONS[0]
-	anim_sprite.play("run_up")
-	position.y -= STEP
-	char_just_moved = true
+	if position.y != TOP_BOUNDARY:
+		curr_direction = DIRECTIONS[0]
+		anim_sprite.play("run_up")
+		position.y -= STEP
+		char_just_moved = true
 	
 func move_right():
-	curr_direction = DIRECTIONS[1]
-	anim_sprite.flip_h = false
-	anim_sprite.play("run")
-	position.x += STEP
-	char_just_moved = true
+	if position.x != RIGHT_BOUNDARY:
+		curr_direction = DIRECTIONS[1]
+		anim_sprite.flip_h = false
+		anim_sprite.play("run")
+		position.x += STEP
+		char_just_moved = true
 	
 func move_down():
-	curr_direction = DIRECTIONS[2]
-	anim_sprite.play("run_down")
-	position.y += STEP
-	char_just_moved = true
+	if position.y != BOTTOM_BOUNDARY:
+		curr_direction = DIRECTIONS[2]
+		anim_sprite.play("run_down")
+		position.y += STEP
+		char_just_moved = true
 
 func move_left():
-	curr_direction = DIRECTIONS[3]
-	anim_sprite.flip_h = true
-	anim_sprite.play("run")
-	position.x -= STEP
-	char_just_moved = true
+	if position.x != LEFT_BOUNDARY:
+		curr_direction = DIRECTIONS[3]
+		anim_sprite.flip_h = true
+		anim_sprite.play("run")
+		position.x -= STEP
+		char_just_moved = true
 
 func idle():
 	if curr_direction == DIRECTIONS[0]:
@@ -70,3 +69,16 @@ func idle():
 		anim_sprite.play("idle")
 		
 	char_just_moved = false
+
+func moving():
+	if Input.is_action_pressed("move_down"):
+		move_down()
+	elif Input.is_action_pressed("move_up"):
+		move_up()
+	elif Input.is_action_pressed("move_left"):
+		move_left()
+	elif Input.is_action_pressed("move_right"):
+		move_right()
+
+func enable_wasd():
+	is_wasd_enabled = true
