@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://bffvse0lfnm1v"]
+
+[ext_resource type="Texture2D" uid="uid://bpxlaln2ccu3i" path="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Characters_free/Alex_idle_anim_16x16.png" id="1_t53bu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2usb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv62r"]
+atlas = ExtResource("1_t53bu")
+region = Rect2(192, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bywyj"]
+atlas = ExtResource("1_t53bu")
+region = Rect2(208, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8360"]
+atlas = ExtResource("1_t53bu")
+region = Rect2(224, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7rgb"]
+atlas = ExtResource("1_t53bu")
+region = Rect2(240, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwm6d"]
+atlas = ExtResource("1_t53bu")
+region = Rect2(256, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0e6i"]
+atlas = ExtResource("1_t53bu")
+region = Rect2(272, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_823ke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv62r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bywyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8360")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7rgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwm6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0e6i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Alex" type="StaticBody2D" groups=["Obstacle"]]
+texture_filter = 1
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_q2usb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_823ke")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0

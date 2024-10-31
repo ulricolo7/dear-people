@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://diysc7k1as1rc"]
+
+[ext_resource type="Texture2D" uid="uid://c1kxtcb60gs4d" path="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Interiors_free/16x16/Chair.png" id="1_2gh5u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2usb"]
+
+[node name="Chair" type="StaticBody2D" groups=["Obstacle"]]
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q2usb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_2gh5u")

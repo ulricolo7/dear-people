@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://c0kel61oa2l4t" path="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Characters_free/Adam_idle_anim_16x16.png" id="2_llt05"]
 [ext_resource type="Texture2D" uid="uid://bw8jds1p7bap2" path="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Characters_free/Adam_run_16x16.png" id="3_da3ss"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nxvq"]
+size = Vector2(19, 26)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_7b74o"]
 atlas = ExtResource("2_llt05")
 region = Rect2(0, 0, 16, 32)
@@ -268,17 +271,47 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nxvq"]
-size = Vector2(19, 26)
-
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="PlayerCharacter" type="CharacterBody2D"]
 script = ExtResource("1_buvd2")
+
+[node name="LeftCollider" type="Area2D" parent="."]
+position = Vector2(-25, 10)
+scale = Vector2(0.7, 0.5)
+
+[node name="CollisionObject2D" type="CollisionShape2D" parent="LeftCollider"]
+shape = SubResource("RectangleShape2D_5nxvq")
+
+[node name="RightCollider" type="Area2D" parent="."]
+position = Vector2(25, 10)
+scale = Vector2(0.7, 0.5)
+
+[node name="CollisionObject2D" type="CollisionShape2D" parent="RightCollider"]
+shape = SubResource("RectangleShape2D_5nxvq")
+
+[node name="UpCollider" type="Area2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(0.7, 0.5)
+
+[node name="CollisionObject2D" type="CollisionShape2D" parent="UpCollider"]
+shape = SubResource("RectangleShape2D_5nxvq")
+
+[node name="DownCollider" type="Area2D" parent="."]
+position = Vector2(0, 35)
+scale = Vector2(0.7, 0.5)
+
+[node name="CollisionObject2D" type="CollisionShape2D" parent="DownCollider"]
+shape = SubResource("RectangleShape2D_5nxvq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3xh81")
 animation = &"run_up"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 4)
-shape = SubResource("RectangleShape2D_5nxvq")
+[connection signal="body_entered" from="LeftCollider" to="." method="_on_left_collider_body_entered"]
+[connection signal="body_exited" from="LeftCollider" to="." method="_on_left_collider_body_exited"]
+[connection signal="body_entered" from="RightCollider" to="." method="_on_right_collider_body_entered"]
+[connection signal="body_exited" from="RightCollider" to="." method="_on_right_collider_body_exited"]
+[connection signal="body_entered" from="UpCollider" to="." method="_on_up_collider_body_entered"]
+[connection signal="body_exited" from="UpCollider" to="." method="_on_up_collider_body_exited"]
+[connection signal="body_entered" from="DownCollider" to="." method="_on_down_collider_body_entered"]
+[connection signal="body_exited" from="DownCollider" to="." method="_on_down_collider_body_exited"]

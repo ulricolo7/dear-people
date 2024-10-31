@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5mvfokp0r6nx"]
 
-[ext_resource type="Script" path="res://Scenes/ui.gd" id="1_c4wha"]
+[ext_resource type="Script" path="res://Script/ui.gd" id="1_f5a4f"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_c4wha")
+script = ExtResource("1_f5a4f")
 
 [node name="LineEdit" type="LineEdit" parent="."]
 texture_filter = 1

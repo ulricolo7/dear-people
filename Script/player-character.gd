@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var STEP = 50
+var STEP = 100
 
 var LEFT_BOUNDARY = 50
 var RIGHT_BOUNDARY = 1350
@@ -8,16 +8,22 @@ var TOP_BOUNDARY = 50
 var BOTTOM_BOUNDARY = 750
 
 var char_just_moved = false
-var is_wasd_enabled = false
+var is_wasd_enabled = true
 
 var DIRECTIONS = ["UP", "RIGHT", "DOWN", "LEFT"]
 
+var can_move_towards = [true, true, true, true]
+
 var curr_direction = DIRECTIONS[3]
 
-@onready
-var anim_sprite = $AnimatedSprite2D
+var anim_sprite
+var up_collider
+var down_collider
+var right_collider
+var left_collider
 
 func _ready():
+	initialise()
 	idle()
 
 func _process(delta):
@@ -29,33 +35,39 @@ func _process(delta):
 	if !Input.is_anything_pressed():
 		idle()
 		
+func initialise():
+	anim_sprite = $AnimatedSprite2D
+	up_collider = $UpCollider
+	right_collider = $RightCollider
+	down_collider = $DownCollider
+	left_collider = $LeftCollider
 
 func move_up():
-	if position.y != TOP_BOUNDARY:
-		curr_direction = DIRECTIONS[0]
+	curr_direction = DIRECTIONS[0]
+	if can_move_towards[0]:
 		anim_sprite.play("run_up")
 		position.y -= STEP
 		char_just_moved = true
 	
 func move_right():
-	if position.x != RIGHT_BOUNDARY:
-		curr_direction = DIRECTIONS[1]
-		anim_sprite.flip_h = false
+	curr_direction = DIRECTIONS[1]
+	anim_sprite.flip_h = false
+	if can_move_towards[1]:
 		anim_sprite.play("run")
 		position.x += STEP
 		char_just_moved = true
 	
 func move_down():
-	if position.y != BOTTOM_BOUNDARY:
-		curr_direction = DIRECTIONS[2]
+	curr_direction = DIRECTIONS[2]
+	if can_move_towards[2]:
 		anim_sprite.play("run_down")
 		position.y += STEP
 		char_just_moved = true
 
 func move_left():
-	if position.x != LEFT_BOUNDARY:
-		curr_direction = DIRECTIONS[3]
-		anim_sprite.flip_h = true
+	curr_direction = DIRECTIONS[3]
+	anim_sprite.flip_h = true
+	if can_move_towards[3]:
 		anim_sprite.play("run")
 		position.x -= STEP
 		char_just_moved = true
@@ -82,3 +94,39 @@ func moving():
 
 func enable_wasd():
 	is_wasd_enabled = true
+
+
+
+
+#collider logic
+func _on_left_collider_body_entered(body):
+	if body.is_in_group("Obstacle"):
+		can_move_towards[3] = false
+
+func _on_left_collider_body_exited(body):
+	if body.is_in_group("Obstacle"):
+		can_move_towards[3] = true
+
+func _on_right_collider_body_entered(body):
+	if body.is_in_group("Obstacle"):
+		can_move_towards[1] = false
+
+func _on_right_collider_body_exited(body):
+	if body.is_in_group("Obstacle"):
+		can_move_towards[1] = true
+
+func _on_up_collider_body_entered(body):
+	if body.is_in_group("Obstacle"):
+		can_move_towards[0] = false
+
+func _on_up_collider_body_exited(body):
+	if body.is_in_group("Obstacle"):
+		can_move_towards[0] = true
+
+func _on_down_collider_body_entered(body):
+	if body.is_in_group("Obstacle"):
+		can_move_towards[2] = false
+
+func _on_down_collider_body_exited(body):
+	if body.is_in_group("Obstacle"):
+		can_move_towards[2] = true
