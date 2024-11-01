@@ -27,3 +27,9 @@ func parse(str):
 		player.move_up()
 	elif str == "enable wasd":
 		player.enable_wasd()
+	elif str == "tlk":
+		var npc = player.check_person()
+		interact(npc)
+
+func interact(npc):
+	print("interacting with ", npc)

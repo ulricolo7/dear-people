@@ -16,6 +16,8 @@ var DIRECTIONS = ["UP", "RIGHT", "DOWN", "LEFT"]
 var can_move_towards = [true, true, true, true]
 
 var curr_direction = DIRECTIONS[3]
+var npc_name
+var npc_loc
 
 var anim_sprite
 var up_collider
@@ -97,14 +99,20 @@ func moving():
 
 func enable_wasd():
 	is_wasd_enabled = true
-
-
-
+	
+func check_person():
+	if curr_direction == npc_loc:
+		return npc_name
+	else:
+		return "no one"
 
 #collider logic
 func _on_left_collider_body_entered(body):
 	if body.is_in_group("Obstacle"):
 		can_move_towards[3] = false
+		if body.is_in_group("NPC"):
+			npc_name = body.get_npc_name()
+			npc_loc = DIRECTIONS[3]
 	elif body.is_in_group("DownStepper") && is_elevated:
 		position.y += 50
 		ui.position.y -= 12.5
@@ -113,10 +121,15 @@ func _on_left_collider_body_entered(body):
 func _on_left_collider_body_exited(body):
 	if body.is_in_group("Obstacle"):
 		can_move_towards[3] = true
+		if body.is_in_group("NPC"):
+			npc_name = "no one"
 
 func _on_right_collider_body_entered(body):
 	if body.is_in_group("Obstacle"):
 		can_move_towards[1] = false
+		if body.is_in_group("NPC"):
+			npc_name = body.get_npc_name()
+			npc_loc = DIRECTIONS[1]
 	elif body.is_in_group("Stairs") && !is_elevated:
 		position.y -= 50
 		ui.position.y += 12.5
@@ -125,19 +138,31 @@ func _on_right_collider_body_entered(body):
 func _on_right_collider_body_exited(body):
 	if body.is_in_group("Obstacle"):
 		can_move_towards[1] = true
+		if body.is_in_group("NPC"):
+			npc_name = "no one"
 
 func _on_up_collider_body_entered(body):
 	if body.is_in_group("Obstacle"):
 		can_move_towards[0] = false
+		if body.is_in_group("NPC"):
+			npc_name = body.get_npc_name()
+			npc_loc = DIRECTIONS[0]
 
 func _on_up_collider_body_exited(body):
 	if body.is_in_group("Obstacle"):
 		can_move_towards[0] = true
+		if body.is_in_group("NPC"):
+			npc_name = "no one"
 
 func _on_down_collider_body_entered(body):
 	if body.is_in_group("Obstacle"):
 		can_move_towards[2] = false
+		if body.is_in_group("NPC"):
+			npc_name = body.get_npc_name()
+			npc_loc = DIRECTIONS[2]
 
 func _on_down_collider_body_exited(body):
 	if body.is_in_group("Obstacle"):
 		can_move_towards[2] = true
+		if body.is_in_group("NPC"):
+			npc_name = "no one"

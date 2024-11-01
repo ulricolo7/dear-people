@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bffvse0lfnm1v"]
+[gd_scene load_steps=11 format=3 uid="uid://bffvse0lfnm1v"]
 
+[ext_resource type="Script" path="res://Script/npc_alex.gd" id="1_bfckk"]
 [ext_resource type="Texture2D" uid="uid://bpxlaln2ccu3i" path="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Characters_free/Alex_idle_anim_16x16.png" id="1_t53bu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q2usb"]
@@ -54,9 +55,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Alex" type="StaticBody2D" groups=["Obstacle"]]
+[node name="Alex" type="StaticBody2D" groups=["NPC", "Obstacle"]]
 texture_filter = 1
 scale = Vector2(4, 4)
+script = ExtResource("1_bfckk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
