@@ -165,10 +165,11 @@ position = Vector2(697, -17)
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_ka1di")]
 texture_filter = 1
 position = Vector2(50, 750)
-scale = Vector2(4, 4)
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 
 [node name="Ui" parent="PlayerCharacter" instance=ExtResource("4_friwq")]
-offset_right = 0.0
-offset_bottom = 0.0
-
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter/Ui"]
+offset_left = -575.0
+offset_top = -325.0
+offset_right = -575.0
+offset_bottom = -325.0

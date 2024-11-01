@@ -274,44 +274,47 @@ animations = [{
 [node name="PlayerCharacter" type="CharacterBody2D"]
 script = ExtResource("1_buvd2")
 
-[node name="LeftCollider" type="Area2D" parent="."]
+[node name="Scaler" type="Node2D" parent="."]
+scale = Vector2(4, 4)
+
+[node name="LeftCollider" type="Area2D" parent="Scaler"]
 position = Vector2(-25, 10)
 scale = Vector2(0.7, 0.5)
 
-[node name="CollisionObject2D" type="CollisionShape2D" parent="LeftCollider"]
+[node name="CollisionObject2D" type="CollisionShape2D" parent="Scaler/LeftCollider"]
 shape = SubResource("RectangleShape2D_5nxvq")
 
-[node name="RightCollider" type="Area2D" parent="."]
+[node name="RightCollider" type="Area2D" parent="Scaler"]
 position = Vector2(25, 10)
 scale = Vector2(0.7, 0.5)
 
-[node name="CollisionObject2D" type="CollisionShape2D" parent="RightCollider"]
+[node name="CollisionObject2D" type="CollisionShape2D" parent="Scaler/RightCollider"]
 shape = SubResource("RectangleShape2D_5nxvq")
 
-[node name="UpCollider" type="Area2D" parent="."]
+[node name="UpCollider" type="Area2D" parent="Scaler"]
 position = Vector2(0, -10)
 scale = Vector2(0.7, 0.5)
 
-[node name="CollisionObject2D" type="CollisionShape2D" parent="UpCollider"]
+[node name="CollisionObject2D" type="CollisionShape2D" parent="Scaler/UpCollider"]
 shape = SubResource("RectangleShape2D_5nxvq")
 
-[node name="DownCollider" type="Area2D" parent="."]
+[node name="DownCollider" type="Area2D" parent="Scaler"]
 position = Vector2(0, 35)
 scale = Vector2(0.7, 0.5)
 
-[node name="CollisionObject2D" type="CollisionShape2D" parent="DownCollider"]
+[node name="CollisionObject2D" type="CollisionShape2D" parent="Scaler/DownCollider"]
 shape = SubResource("RectangleShape2D_5nxvq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Scaler"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3xh81")
 animation = &"run_up"
 
-[connection signal="body_entered" from="LeftCollider" to="." method="_on_left_collider_body_entered"]
-[connection signal="body_exited" from="LeftCollider" to="." method="_on_left_collider_body_exited"]
-[connection signal="body_entered" from="RightCollider" to="." method="_on_right_collider_body_entered"]
-[connection signal="body_exited" from="RightCollider" to="." method="_on_right_collider_body_exited"]
-[connection signal="body_entered" from="UpCollider" to="." method="_on_up_collider_body_entered"]
-[connection signal="body_exited" from="UpCollider" to="." method="_on_up_collider_body_exited"]
-[connection signal="body_entered" from="DownCollider" to="." method="_on_down_collider_body_entered"]
-[connection signal="body_exited" from="DownCollider" to="." method="_on_down_collider_body_exited"]
+[connection signal="body_entered" from="Scaler/LeftCollider" to="." method="_on_left_collider_body_entered"]
+[connection signal="body_exited" from="Scaler/LeftCollider" to="." method="_on_left_collider_body_exited"]
+[connection signal="body_entered" from="Scaler/RightCollider" to="." method="_on_right_collider_body_entered"]
+[connection signal="body_exited" from="Scaler/RightCollider" to="." method="_on_right_collider_body_exited"]
+[connection signal="body_entered" from="Scaler/UpCollider" to="." method="_on_up_collider_body_entered"]
+[connection signal="body_exited" from="Scaler/UpCollider" to="." method="_on_up_collider_body_exited"]
+[connection signal="body_entered" from="Scaler/DownCollider" to="." method="_on_down_collider_body_entered"]
+[connection signal="body_exited" from="Scaler/DownCollider" to="." method="_on_down_collider_body_exited"]

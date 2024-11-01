@@ -1,7 +1,13 @@
 extends Control
 
+var STANDBY_POS = Vector2(3000, 0)
+var ACTIVE_POS = Vector2(0, 0)
+
 @onready
 var text_input =  $LineEdit
+
+@onready
+var dialog_box = $DialogBox
 
 @onready
 var player = get_parent()
@@ -17,19 +23,25 @@ func _process(delta):
 		text_input.clear()
 		
 func parse(str):
-	if str == "left":
+	if str == "left" && player.is_player_moving():
 		player.move_left()
-	elif str == "right":
+	elif str == "right" && player.is_player_moving():
 		player.move_right()
-	elif str == "down":
+	elif str == "down" && player.is_player_moving():
 		player.move_down()
-	elif str == "up":
+	elif str == "up" && player.is_player_moving():
 		player.move_up()
 	elif str == "enable wasd":
-		player.enable_wasd()
-	elif str == "tlk":
+		player.toggle_movement()
+	elif str == "hi":
 		var npc = player.check_person()
 		interact(npc)
+	elif str == "bye" :
+		dialog_box.position = STANDBY_POS
 
 func interact(npc):
-	print("interacting with ", npc)
+	if npc == "no one":
+		return
+	
+	player.toggle_movement()
+	dialog_box.position = ACTIVE_POS

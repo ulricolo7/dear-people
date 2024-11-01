@@ -40,11 +40,11 @@ func _process(delta):
 		idle()
 		
 func initialise():
-	anim_sprite = $AnimatedSprite2D
-	up_collider = $UpCollider
-	right_collider = $RightCollider
-	down_collider = $DownCollider
-	left_collider = $LeftCollider
+	anim_sprite = $Scaler/AnimatedSprite2D
+	up_collider = $Scaler/UpCollider
+	right_collider = $Scaler/RightCollider
+	down_collider = $Scaler/DownCollider
+	left_collider = $Scaler/LeftCollider
 	ui = $Ui
 
 func move_up():
@@ -97,8 +97,11 @@ func moving():
 	elif Input.is_action_pressed("move_right"):
 		move_right()
 
-func enable_wasd():
-	is_wasd_enabled = true
+func is_player_moving():
+	return is_wasd_enabled
+
+func toggle_movement():
+	is_wasd_enabled = !is_wasd_enabled
 	
 func check_person():
 	if curr_direction == npc_loc:
