@@ -9,6 +9,7 @@ var BOTTOM_BOUNDARY = 750
 
 var char_just_moved = false
 var is_wasd_enabled = true
+var is_elevated = false
 
 var DIRECTIONS = ["UP", "RIGHT", "DOWN", "LEFT"]
 
@@ -21,6 +22,7 @@ var up_collider
 var down_collider
 var right_collider
 var left_collider
+var ui
 
 func _ready():
 	initialise()
@@ -41,6 +43,7 @@ func initialise():
 	right_collider = $RightCollider
 	down_collider = $DownCollider
 	left_collider = $LeftCollider
+	ui = $Ui
 
 func move_up():
 	curr_direction = DIRECTIONS[0]
@@ -102,6 +105,10 @@ func enable_wasd():
 func _on_left_collider_body_entered(body):
 	if body.is_in_group("Obstacle"):
 		can_move_towards[3] = false
+	elif body.is_in_group("DownStepper") && is_elevated:
+		position.y += 50
+		ui.position.y -= 12.5
+		is_elevated = false
 
 func _on_left_collider_body_exited(body):
 	if body.is_in_group("Obstacle"):
@@ -110,6 +117,10 @@ func _on_left_collider_body_exited(body):
 func _on_right_collider_body_entered(body):
 	if body.is_in_group("Obstacle"):
 		can_move_towards[1] = false
+	elif body.is_in_group("Stairs") && !is_elevated:
+		position.y -= 50
+		ui.position.y += 12.5
+		is_elevated = true
 
 func _on_right_collider_body_exited(body):
 	if body.is_in_group("Obstacle"):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgqjs5p6cikq1"]
+[gd_scene load_steps=10 format=3 uid="uid://cgqjs5p6cikq1"]
 
 [ext_resource type="PackedScene" uid="uid://cksx6ci0liy7w" path="res://Scenes/BlackWall.tscn" id="1_0dg7r"]
 [ext_resource type="Texture2D" uid="uid://c6h43h0dse3qb" path="res://Assets/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Tilesets/Wooden_House_Walls_Tilset.png" id="1_1u4tw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5mvfokp0r6nx" path="res://Scenes/Ui.tscn" id="4_friwq"]
 [ext_resource type="PackedScene" uid="uid://diysc7k1as1rc" path="res://Scenes/Chair.tscn" id="5_w5ggt"]
 [ext_resource type="PackedScene" uid="uid://bffvse0lfnm1v" path="res://Scenes/Alex.tscn" id="6_bhdrb"]
+[ext_resource type="PackedScene" uid="uid://dfkcf4dnlfnkx" path="res://Scenes/Stage.tscn" id="7_sf1x1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5kxkc"]
 texture = ExtResource("1_1u4tw")
@@ -29,23 +30,26 @@ sources/0 = SubResource("TileSetAtlasSource_5kxkc")
 
 [node name="Game" type="Node2D"]
 
-[node name="Left" parent="." instance=ExtResource("1_0dg7r")]
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Left" parent="Walls" instance=ExtResource("1_0dg7r")]
 position = Vector2(-500, 425)
 scale = Vector2(20, 20)
 
-[node name="Right" parent="." instance=ExtResource("1_0dg7r")]
+[node name="Right" parent="Walls" instance=ExtResource("1_0dg7r")]
 position = Vector2(1925, 425)
 scale = Vector2(20, 20)
 
-[node name="Bottom" parent="." instance=ExtResource("1_0dg7r")]
+[node name="Bottom" parent="Walls" instance=ExtResource("1_0dg7r")]
 position = Vector2(675, 1075)
 scale = Vector2(60, 10)
 
-[node name="Top" parent="." instance=ExtResource("1_0dg7r")]
+[node name="Top" parent="Walls" instance=ExtResource("1_0dg7r")]
 position = Vector2(650, -300)
 scale = Vector2(60, 10)
 
 [node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_vlw22")
 format = 2
@@ -154,6 +158,9 @@ position = Vector2(450, 600)
 
 [node name="Chair16" parent="BlockOfChairs2" instance=ExtResource("5_w5ggt")]
 position = Vector2(550, 600)
+
+[node name="Stage" parent="." instance=ExtResource("7_sf1x1")]
+position = Vector2(697, -17)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_ka1di")]
 texture_filter = 1
