@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl4qldu8fnkmo"
-path="res://.godot/imported/Amelia_idle_anim_16x16.png-cb4b196efb93c1964b82cc74419d7ffc.ctex"
+uid="uid://bfh78e80ocsp2"
+path="res://.godot/imported/Amelia_face.png-980b2d3a592c4c11c43b24709561080f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Characters_free/Amelia_idle_anim_16x16.png"
-dest_files=["res://.godot/imported/Amelia_idle_anim_16x16.png-cb4b196efb93c1964b82cc74419d7ffc.ctex"]
+source_file="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Characters_free/Amelia_face.png"
+dest_files=["res://.godot/imported/Amelia_face.png-980b2d3a592c4c11c43b24709561080f.ctex"]
 
 [params]
 

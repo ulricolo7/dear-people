@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5mvfokp0r6nx"]
+[gd_scene load_steps=4 format=3 uid="uid://c5mvfokp0r6nx"]
 
 [ext_resource type="Script" path="res://Script/ui.gd" id="1_f5a4f"]
 [ext_resource type="Texture2D" uid="uid://bbkmbaa60y1bv" path="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Characters_free/Alex_face.png" id="2_wqqjt"]
+[ext_resource type="Texture2D" uid="uid://bfh78e80ocsp2" path="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Characters_free/Amelia_face.png" id="3_5cfy3"]
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -10,26 +11,58 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_f5a4f")
 
-[node name="DialogBox" type="Panel" parent="."]
+[node name="AlexDialogBox" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 3000.0
+offset_left = 2950.0
 offset_right = 4150.0
 offset_bottom = 650.0
 
-[node name="Alex" type="Sprite2D" parent="DialogBox"]
+[node name="Alex" type="Sprite2D" parent="AlexDialogBox"]
 texture_filter = 1
-position = Vector2(571, 231)
+position = Vector2(575, 230)
 scale = Vector2(32, 32)
 texture = ExtResource("2_wqqjt")
 
-[node name="Label" type="Label" parent="DialogBox"]
+[node name="Label" type="Label" parent="AlexDialogBox"]
+offset_left = 837.0
+offset_top = 96.0
+offset_right = 1155.0
+offset_bottom = 328.0
+theme_override_font_sizes/font_size = 40
+text = "'Sup
+
+Ready for
+your big speech?"
+
+[node name="Answer" type="Label" parent="AlexDialogBox"]
+offset_left = 835.0
+offset_top = 352.0
+offset_right = 1153.0
+offset_bottom = 584.0
+theme_override_font_sizes/font_size = 40
+text = "> \"yes\"
+> \"no\""
+
+[node name="MaryDialogBox" type="Panel" parent="."]
 layout_mode = 0
+offset_left = 2950.0
+offset_top = 1000.0
+offset_right = 4150.0
+offset_bottom = 1650.0
+
+[node name="Mary" type="Sprite2D" parent="MaryDialogBox"]
+texture_filter = 1
+position = Vector2(575, 230)
+scale = Vector2(32, 32)
+texture = ExtResource("3_5cfy3")
+
+[node name="Label" type="Label" parent="MaryDialogBox"]
 offset_left = 840.0
 offset_top = 151.0
 offset_right = 950.0
 offset_bottom = 209.0
 theme_override_font_sizes/font_size = 40
-text = "Hello."
+text = "Hi!"
 
 [node name="LineEdit" type="LineEdit" parent="."]
 texture_filter = 1
@@ -38,7 +71,7 @@ offset_left = 350.0
 offset_top = 500.0
 offset_right = 800.0
 offset_bottom = 600.0
-theme_override_colors/font_placeholder_color = Color(0.419608, 0.419608, 0.419608, 1)
+theme_override_colors/font_placeholder_color = Color(0.619608, 0.619608, 0.619608, 1)
 theme_override_font_sizes/font_size = 40
 placeholder_text = "insert input here"
 max_length = 12
