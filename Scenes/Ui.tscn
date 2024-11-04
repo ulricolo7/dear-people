@@ -68,6 +68,46 @@ offset_bottom = 209.0
 theme_override_font_sizes/font_size = 40
 text = "Hi!"
 
+[node name="DialogTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SpeechDialogBox" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1363.0
+offset_top = 263.0
+offset_right = 2563.0
+offset_bottom = 913.0
+
+[node name="ProgressBar" type="ProgressBar" parent="SpeechDialogBox"]
+layout_mode = 0
+offset_left = 1020.0
+offset_top = 125.0
+offset_right = 1050.0
+offset_bottom = 525.0
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="ProgressBar2" type="ProgressBar" parent="SpeechDialogBox"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 125.0
+offset_right = 180.0
+offset_bottom = 525.0
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="SpeechDialogBox"]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 101.0
+offset_right = 355.0
+offset_bottom = 124.0
+text = "Dear People,
+
+I come here before you today..."
+
 [node name="LineEdit" type="LineEdit" parent="."]
 texture_filter = 1
 layout_mode = 0

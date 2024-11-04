@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7bn8cjfgpveb"]
+
+[ext_resource type="Script" path="res://Scenes/npc_speech.gd" id="1_mtk6f"]
+[ext_resource type="Texture2D" uid="uid://cw0rlcrcgl4x5" path="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Interiors_free/16x16/Mic.png" id="1_q4hew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmo42"]
+
+[node name="Speech" type="StaticBody2D"]
+script = ExtResource("1_mtk6f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 14)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_kmo42")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("1_q4hew")

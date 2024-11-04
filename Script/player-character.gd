@@ -163,6 +163,9 @@ func _on_down_collider_body_entered(body):
 		if body.is_in_group("NPC"):
 			npc_name = body.get_npc_name()
 			npc_loc = DIRECTIONS[2]
+	elif body.is_in_group("Mic"):
+			npc_name = body.get_npc_name()
+			npc_loc = DIRECTIONS[2]
 
 func _on_down_collider_body_exited(body):
 	if body.is_in_group("Obstacle"):

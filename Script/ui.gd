@@ -6,6 +6,9 @@ var ACTIVE_POS = Vector2(-20, 0)
 var text_input
 var dialog_box
 var player
+var timer
+var p_bar_1
+var p_bar_2
 
 var curr_npc
 
@@ -14,10 +17,16 @@ var npc_alex
 var npc_alex_dialog
 var npc_alex_ans
 var npc_alex_val = 0
+
 var npc_mary
 var npc_mary_dialog
 var npc_mary_ans
 var npc_mary_val = 0
+
+var npc_speech
+var npc_speech_dialog
+var npc_speech_ans
+var npc_speech_val = 0
 
 var in_dialog = false
 
@@ -26,6 +35,8 @@ func _ready():
 	text_input.clear()
 
 func _process(delta):
+	p_bar_1.value = timer.get_time_left() * 10.0
+	p_bar_2.set_value(timer.get_time_left() * 10.0)
 	if Input.is_action_just_pressed("return") && !in_dialog:
 		parse(text_input.text)
 		text_input.clear()
@@ -36,6 +47,9 @@ func _process(delta):
 func initialise():
 	text_input =  $LineEdit
 	player = get_parent()
+	timer = $DialogTimer
+	p_bar_1 = $SpeechDialogBox/ProgressBar
+	p_bar_2 = $SpeechDialogBox/ProgressBar2
 	
 	#ADD NPC
 	npc_alex = $AlexDialogBox
@@ -43,6 +57,8 @@ func initialise():
 	npc_alex_ans = $AlexDialogBox/Answer
 	npc_mary = $MaryDialogBox
 	npc_mary_dialog = $MaryDialogBox/Label
+	npc_speech = $SpeechDialogBox
+	npc_speech_dialog = $SpeechDialogBox/Label
 
 func parse(str):
 	if str == "left" && player.is_player_moving():
@@ -58,9 +74,9 @@ func parse(str):
 	elif str == "hi" && !in_dialog:
 		var npc = player.check_person()
 		interact(npc, 0)
-	
 
 func dialog_parse(str):
+	#ADD NPX
 	if curr_npc == "Alex":
 		if str == "bye":
 			interact(curr_npc, -1)
@@ -68,6 +84,14 @@ func dialog_parse(str):
 		else:
 			npc_alex_val += 1
 			interact(curr_npc, npc_alex_val)
+	elif curr_npc == "Mary":
+		if str == "bye":
+			interact(curr_npc, -1)
+			in_dialog = false
+	elif curr_npc == "Speech":
+		if str == "bye":
+			interact(curr_npc, -1)
+			in_dialog = false
 
 func interact(npc, i):
 	#ADD NPC
@@ -78,8 +102,9 @@ func interact(npc, i):
 		set_alex(i)
 	elif npc == "Mary":
 		set_mary(i)
+	elif npc == "Speech":
+		set_speech(i)
 		
-	
 
 #ADD NPC
 func set_alex(i):
@@ -99,16 +124,26 @@ func set_alex(i):
 		npc_alex_dialog.text = "You can say\nbye now."
 		npc_alex_ans.text = "> \"bye\"\n"
 
-func intensify(dialog, i):
-	dialog.position += Vector2(-60 * i, -32.5 * i)
-	dialog.set("metadata/ACTIVE_POS", dialog.position)
-	dialog.position = npc_alex.get("metadata/ACTIVE_POS")
-	var new_scale = dialog.scale + Vector2(i/10.0, i/10.0)
-	print(new_scale)
-	dialog.set("scale", new_scale)
-
 func set_mary(i):
 	if i < 0:
 		npc_mary.position = STANDBY_POS
 	elif i == 0:
 		npc_mary.position = ACTIVE_POS
+		in_dialog = true
+
+func set_speech(i):
+	if i < 0:
+		npc_speech.position = STANDBY_POS
+	elif i == 0:
+		npc_speech.position = ACTIVE_POS
+		in_dialog = true
+		timer.start(10)
+		
+		
+
+func intensify(dialog, i):
+	dialog.position += Vector2(-60 * i, -32.5 * i)
+	dialog.set("metadata/ACTIVE_POS", dialog.position)
+	dialog.position = npc_alex.get("metadata/ACTIVE_POS")
+	var new_scale = dialog.scale + Vector2(i/10.0, i/10.0)
+	dialog.set("scale", new_scale)
