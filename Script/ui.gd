@@ -87,15 +87,25 @@ func set_alex(i):
 		npc_alex.position = STANDBY_POS
 		player.toggle_movement()
 	elif i == 0:
-		npc_alex.position = ACTIVE_POS
+		npc_alex.position = npc_alex.get("metadata/ACTIVE_POS")
 		player.toggle_movement()
 		in_dialog = true
 	elif i == 1:
+		intensify(npc_alex, 1)
 		npc_alex_dialog.text = "You'll be fine.\n\n" + "Don't worry\ntoo much"
 		npc_alex_ans.text = "> \"ok\"\n" + "> \"nervous\""
 	else:
+		intensify(npc_alex, 2)
 		npc_alex_dialog.text = "You can say\nbye now."
 		npc_alex_ans.text = "> \"bye\"\n"
+
+func intensify(dialog, i):
+	dialog.position += Vector2(-60 * i, -32.5 * i)
+	dialog.set("metadata/ACTIVE_POS", dialog.position)
+	dialog.position = npc_alex.get("metadata/ACTIVE_POS")
+	var new_scale = dialog.scale + Vector2(i/10.0, i/10.0)
+	print(new_scale)
+	dialog.set("scale", new_scale)
 
 func set_mary(i):
 	if i < 0:

@@ -16,6 +16,7 @@ layout_mode = 0
 offset_left = 2950.0
 offset_right = 4150.0
 offset_bottom = 650.0
+metadata/ACTIVE_POS = Vector2(-20, 0)
 
 [node name="Alex" type="Sprite2D" parent="AlexDialogBox"]
 texture_filter = 1
