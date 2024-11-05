@@ -191,10 +191,11 @@ offset_top = 622.0
 offset_right = -29.0
 offset_bottom = 856.0
 text = "Hello!
-To start playing, click on the input line and type the following words to move:
+To start playing, click on the input line and type the following commands:
 > \"right\" to go right
 > \"left\" to go left
 > \"hi\" to talk to people
+> \"credits\" to skip to the ending
 
 Go talk to Alex! =>"
 autowrap_mode = 2

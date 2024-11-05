@@ -120,6 +120,7 @@ func dialog_parse(str):
 		if str == "bye":
 			interact(curr_npc, -1)
 			in_dialog = false
+			return
 		elif npc_alex_val == 0 && str != "no":
 			if str != "nervous":
 				mistake()
@@ -139,6 +140,7 @@ func dialog_parse(str):
 		if str == "bye":
 			interact(curr_npc, -1)
 			in_dialog = false
+			return
 		elif npc_mary_val == 0 && str != "sorry":
 			mistake()
 			return
@@ -156,6 +158,7 @@ func dialog_parse(str):
 		if str == "end" && npc_speech_val > 3:
 			interact(curr_npc, -1)
 			in_dialog = false
+			return
 		elif npc_speech_val == 0 && str != "gulp":
 			if str != "talk":
 				mistake()
