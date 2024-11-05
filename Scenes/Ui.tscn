@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5mvfokp0r6nx"]
+[gd_scene load_steps=5 format=3 uid="uid://c5mvfokp0r6nx"]
 
 [ext_resource type="Script" path="res://Script/ui.gd" id="1_f5a4f"]
 [ext_resource type="Texture2D" uid="uid://bbkmbaa60y1bv" path="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Characters_free/Alex_face.png" id="2_wqqjt"]
 [ext_resource type="Texture2D" uid="uid://bfh78e80ocsp2" path="res://Assets/Modern_Interiors_Free_v2.2/Modern tiles_Free/Characters_free/Amelia_face.png" id="3_5cfy3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ps1po"]
+bg_color = Color(1, 0, 0, 1)
 
 [node name="Ui" type="Control"]
 layout_mode = 3
@@ -11,12 +14,21 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_f5a4f")
 
+[node name="RedFlash" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 5900.0
+offset_top = 2000.0
+offset_right = 7100.0
+offset_bottom = 2650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ps1po")
+metadata/ACTIVE_POS = Vector2(-25, 0)
+
 [node name="AlexDialogBox" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 2950.0
 offset_right = 4150.0
 offset_bottom = 650.0
-metadata/ACTIVE_POS = Vector2(-20, 0)
+metadata/ACTIVE_POS = Vector2(-25, 0)
 
 [node name="Alex" type="Sprite2D" parent="AlexDialogBox"]
 texture_filter = 1
@@ -33,18 +45,18 @@ offset_bottom = 328.0
 theme_override_font_sizes/font_size = 40
 text = "'Sup
 
-Ready for
-your big speech?"
+Ready for your big speech?"
+autowrap_mode = 2
 
 [node name="Answer" type="Label" parent="AlexDialogBox"]
 layout_mode = 0
-offset_left = 835.0
-offset_top = 352.0
-offset_right = 1153.0
-offset_bottom = 584.0
+offset_left = 837.0
+offset_top = 390.0
+offset_right = 1155.0
+offset_bottom = 622.0
 theme_override_font_sizes/font_size = 40
-text = "> \"yes\"
-> \"no\""
+text = "> \"no\"
+> \"nervous\""
 
 [node name="MaryDialogBox" type="Panel" parent="."]
 layout_mode = 0
@@ -61,22 +73,33 @@ texture = ExtResource("3_5cfy3")
 
 [node name="Label" type="Label" parent="MaryDialogBox"]
 layout_mode = 0
-offset_left = 840.0
-offset_top = 151.0
-offset_right = 950.0
-offset_bottom = 209.0
+offset_left = 846.0
+offset_top = 106.0
+offset_right = 1169.0
+offset_bottom = 378.0
 theme_override_font_sizes/font_size = 40
-text = "Hi!"
+text = "Oh sorry! 
+
+You shouldn't go up from here!"
+autowrap_mode = 2
+
+[node name="Answer" type="Label" parent="MaryDialogBox"]
+offset_left = 837.0
+offset_top = 390.0
+offset_right = 1155.0
+offset_bottom = 622.0
+theme_override_font_sizes/font_size = 40
+text = "> \"sorry\""
 
 [node name="DialogTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="SpeechDialogBox" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 1363.0
-offset_top = 263.0
-offset_right = 2563.0
-offset_bottom = 913.0
+offset_left = 5900.0
+offset_top = 1000.0
+offset_right = 7100.0
+offset_bottom = 1650.0
 
 [node name="ProgressBar" type="ProgressBar" parent="SpeechDialogBox"]
 layout_mode = 0
@@ -98,23 +121,110 @@ value = 100.0
 fill_mode = 3
 show_percentage = false
 
-[node name="Label" type="Label" parent="SpeechDialogBox"]
+[node name="SpeechDisplay" type="Label" parent="SpeechDialogBox"]
 layout_mode = 0
-offset_left = 315.0
-offset_top = 101.0
-offset_right = 355.0
-offset_bottom = 124.0
+offset_left = 300.0
+offset_top = 100.0
+offset_right = 900.0
+offset_bottom = 550.0
+theme_override_font_sizes/font_size = 30
 text = "Dear People,
 
 I come here before you today..."
+horizontal_alignment = 1
+
+[node name="SpeechAns" type="Label" parent="SpeechDialogBox"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="EndScreen" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 5900.0
+offset_right = 7100.0
+offset_bottom = 650.0
+
+[node name="Title" type="Label" parent="EndScreen"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 95.0
+offset_right = 804.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 80
+text = "PROGRESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeTaken" type="Label" parent="EndScreen"]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 224.0
+offset_right = 674.0
+offset_bottom = 269.0
+theme_override_font_sizes/font_size = 30
+text = "Time taken to finish the game:"
+
+[node name="TimeDisplay" type="Label" parent="EndScreen"]
+layout_mode = 0
+offset_left = 865.0
+offset_top = 224.0
+offset_right = 971.0
+offset_bottom = 269.0
+theme_override_font_sizes/font_size = 30
+text = "00:00"
+horizontal_alignment = 2
+
+[node name="InputCounter" type="Label" parent="EndScreen"]
+layout_mode = 0
+offset_left = 233.0
+offset_top = 274.0
+offset_right = 456.0
+offset_bottom = 319.0
+theme_override_font_sizes/font_size = 30
+text = "Inputs Entered:"
+
+[node name="CounterDisplay" type="Label" parent="EndScreen"]
+layout_mode = 0
+offset_left = 866.0
+offset_top = 274.0
+offset_right = 972.0
+offset_bottom = 319.0
+theme_override_font_sizes/font_size = 30
+text = "000"
+horizontal_alignment = 2
+
+[node name="ExplanationDisplay" type="Label" parent="EndScreen"]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 435.0
+offset_right = 1278.0
+offset_bottom = 634.0
+theme_override_font_sizes/font_size = 30
+text = "Remember your 3Ps!
+(P) repare your interactions
+(P) ractice sufficiently
+check your (P) rogress"
+horizontal_alignment = 1
+
+[node name="ThankYou" type="Label" parent="EndScreen"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 352.0
+offset_right = 900.0
+offset_bottom = 468.0
+theme_override_font_sizes/font_size = 40
+text = "Thank you for playing!
+> \"replay\"
+> \"credits\""
+horizontal_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="."]
 texture_filter = 1
 layout_mode = 0
 offset_left = 350.0
-offset_top = 500.0
+offset_top = 525.0
 offset_right = 800.0
-offset_bottom = 600.0
+offset_bottom = 606.0
 theme_override_colors/font_placeholder_color = Color(0.619608, 0.619608, 0.619608, 1)
 theme_override_font_sizes/font_size = 40
 placeholder_text = "insert input here"

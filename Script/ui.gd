@@ -1,14 +1,15 @@
 extends Control
 
 var STANDBY_POS = Vector2(3000, 0)
-var ACTIVE_POS = Vector2(-20, 0)
+var ACTIVE_POS = Vector2(-25, 0)
 
 var text_input
 var dialog_box
 var player
-var timer
+var d_timer
 var p_bar_1
 var p_bar_2
+var flash
 
 var curr_npc
 
@@ -29,14 +30,20 @@ var npc_speech_ans
 var npc_speech_val = 0
 
 var in_dialog = false
+var elapsed_time = 0.0
 
 func _ready():
 	initialise()
 	text_input.clear()
 
 func _process(delta):
-	p_bar_1.value = timer.get_time_left() * 10.0
-	p_bar_2.set_value(timer.get_time_left() * 10.0)
+	p_bar_1.value = d_timer.get_time_left() * 10.0
+	p_bar_2.set_value(d_timer.get_time_left() * 10.0)
+	
+	elapsed_time += delta
+	var minutes = int(elapsed_time / 60)
+	var seconds = int(elapsed_time) % 60
+	
 	if Input.is_action_just_pressed("return") && !in_dialog:
 		parse(text_input.text)
 		text_input.clear()
@@ -47,16 +54,18 @@ func _process(delta):
 func initialise():
 	text_input =  $LineEdit
 	player = get_parent()
-	timer = $DialogTimer
+	d_timer = $DialogTimer
 	p_bar_1 = $SpeechDialogBox/ProgressBar
 	p_bar_2 = $SpeechDialogBox/ProgressBar2
 	
 	#ADD NPC
+	flash = $RedFlash
 	npc_alex = $AlexDialogBox
 	npc_alex_dialog = $AlexDialogBox/Label
 	npc_alex_ans = $AlexDialogBox/Answer
 	npc_mary = $MaryDialogBox
 	npc_mary_dialog = $MaryDialogBox/Label
+	npc_mary_ans = $MaryDialogBox/Answer
 	npc_speech = $SpeechDialogBox
 	npc_speech_dialog = $SpeechDialogBox/Label
 
@@ -103,8 +112,7 @@ func interact(npc, i):
 	elif npc == "Mary":
 		set_mary(i)
 	elif npc == "Speech":
-		set_speech(i)
-		
+		set_speech(i)		
 
 #ADD NPC
 func set_alex(i):
@@ -117,11 +125,11 @@ func set_alex(i):
 		in_dialog = true
 	elif i == 1:
 		intensify(npc_alex, 1)
-		npc_alex_dialog.text = "You'll be fine.\n\n" + "Don't worry\ntoo much"
-		npc_alex_ans.text = "> \"ok\"\n" + "> \"nervous\""
+		npc_alex_dialog.text = "You'll be fine.\n\n" + "Don't worry too much"
+		npc_alex_ans.text = "> \"ok\"\n" + "> \"cry\""
 	else:
 		intensify(npc_alex, 2)
-		npc_alex_dialog.text = "You can say\nbye now."
+		npc_alex_dialog.text = "You can say bye now."
 		npc_alex_ans.text = "> \"bye\"\n"
 
 func set_mary(i):
@@ -137,7 +145,7 @@ func set_speech(i):
 	elif i == 0:
 		npc_speech.position = ACTIVE_POS
 		in_dialog = true
-		timer.start(10)
+		d_timer.start(10)
 		
 		
 
