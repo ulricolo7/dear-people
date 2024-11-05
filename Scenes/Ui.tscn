@@ -14,15 +14,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_f5a4f")
 
-[node name="RedFlash" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 5900.0
-offset_top = 2000.0
-offset_right = 7100.0
-offset_bottom = 2650.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_ps1po")
-metadata/ACTIVE_POS = Vector2(-25, 0)
-
 [node name="AlexDialogBox" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 2950.0
@@ -194,19 +185,6 @@ theme_override_font_sizes/font_size = 30
 text = "000"
 horizontal_alignment = 2
 
-[node name="ExplanationDisplay" type="Label" parent="EndScreen"]
-layout_mode = 0
-offset_left = 656.0
-offset_top = 435.0
-offset_right = 1278.0
-offset_bottom = 634.0
-theme_override_font_sizes/font_size = 30
-text = "Remember your 3Ps!
-(P) repare your interactions
-(P) ractice sufficiently
-check your (P) rogress"
-horizontal_alignment = 1
-
 [node name="ThankYou" type="Label" parent="EndScreen"]
 layout_mode = 0
 offset_left = 300.0
@@ -249,6 +227,15 @@ text = "Remember your 3Ps!
 (P) ractice sufficiently
 check your (P) rogress"
 horizontal_alignment = 1
+
+[node name="RedFlash" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -25.0
+offset_right = 1175.0
+offset_bottom = 650.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ps1po")
+metadata/ACTIVE_POS = Vector2(-25, 0)
 
 [node name="LineEdit" type="LineEdit" parent="."]
 texture_filter = 1

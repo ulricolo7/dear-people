@@ -44,6 +44,10 @@ func _process(delta):
 	var minutes = int(elapsed_time / 60)
 	var seconds = int(elapsed_time) % 60
 	
+	#this solution needs to be put up in a museum
+	var x = flash.get_modulate().a - 40
+	flash.set_modulate(Color(255, 0, 0, x))
+	
 	if Input.is_action_just_pressed("return") && !in_dialog:
 		parse(text_input.text)
 		text_input.clear()
@@ -67,7 +71,7 @@ func initialise():
 	npc_mary_dialog = $MaryDialogBox/Label
 	npc_mary_ans = $MaryDialogBox/Answer
 	npc_speech = $SpeechDialogBox
-	npc_speech_dialog = $SpeechDialogBox/Label
+	npc_speech_dialog = $SpeechDialogBox/SpeechDisplay
 
 func parse(str):
 	if str == "left" && player.is_player_moving():
@@ -90,6 +94,8 @@ func dialog_parse(str):
 		if str == "bye":
 			interact(curr_npc, -1)
 			in_dialog = false
+		elif str == "o":
+			mistake()
 		else:
 			npc_alex_val += 1
 			interact(curr_npc, npc_alex_val)
@@ -147,7 +153,6 @@ func set_speech(i):
 		in_dialog = true
 		d_timer.start(10)
 		
-		
 
 func intensify(dialog, i):
 	dialog.position += Vector2(-60 * i, -32.5 * i)
@@ -155,3 +160,6 @@ func intensify(dialog, i):
 	dialog.position = npc_alex.get("metadata/ACTIVE_POS")
 	var new_scale = dialog.scale + Vector2(i/10.0, i/10.0)
 	dialog.set("scale", new_scale)
+
+func mistake():
+	flash.set_modulate(Color(255, 0, 0, 255))

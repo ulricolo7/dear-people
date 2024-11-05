@@ -64,7 +64,7 @@ position = Vector2(697, -17)
 position = Vector2(550, 150)
 
 [node name="Alex" parent="." instance=ExtResource("6_bhdrb")]
-position = Vector2(1350, 750)
+position = Vector2(450, 750)
 
 [node name="Speech" parent="." groups=["Mic"] instance=ExtResource("6_30hlh")]
 position = Vector2(650, 50)
