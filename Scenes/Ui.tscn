@@ -200,9 +200,9 @@ horizontal_alignment = 1
 [node name="CreditsScreen" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 5900.0
-offset_top = 3000.0
+offset_top = 2000.0
 offset_right = 7100.0
-offset_bottom = 3650.0
+offset_bottom = 2650.0
 
 [node name="Title" type="Label" parent="CreditsScreen"]
 layout_mode = 0
@@ -247,6 +247,7 @@ offset_bottom = 606.0
 theme_override_colors/font_placeholder_color = Color(0.619608, 0.619608, 0.619608, 1)
 theme_override_font_sizes/font_size = 40
 placeholder_text = "insert input here"
+alignment = 1
 max_length = 12
 caret_blink = true
 caret_force_displayed = true
