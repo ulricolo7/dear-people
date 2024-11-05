@@ -84,6 +84,7 @@ You shouldn't go up from here!"
 autowrap_mode = 2
 
 [node name="Answer" type="Label" parent="MaryDialogBox"]
+layout_mode = 0
 offset_left = 837.0
 offset_top = 390.0
 offset_right = 1155.0
@@ -216,6 +217,37 @@ theme_override_font_sizes/font_size = 40
 text = "Thank you for playing!
 > \"replay\"
 > \"credits\""
+horizontal_alignment = 1
+
+[node name="CreditsScreen" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 5900.0
+offset_top = 3000.0
+offset_right = 7100.0
+offset_bottom = 3650.0
+
+[node name="Title" type="Label" parent="CreditsScreen"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 95.0
+offset_right = 804.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 80
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExplanationDisplay" type="Label" parent="CreditsScreen"]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 227.0
+offset_right = 916.0
+offset_bottom = 426.0
+theme_override_font_sizes/font_size = 30
+text = "Remember your 3Ps!
+(P) repare your interactions
+(P) ractice sufficiently
+check your (P) rogress"
 horizontal_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="."]
