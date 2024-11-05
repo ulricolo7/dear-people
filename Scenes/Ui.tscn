@@ -33,7 +33,7 @@ offset_left = 837.0
 offset_top = 96.0
 offset_right = 1155.0
 offset_bottom = 328.0
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 text = "'Sup
 
 Ready for your big speech?"
@@ -55,6 +55,7 @@ offset_left = 2950.0
 offset_top = 1000.0
 offset_right = 4150.0
 offset_bottom = 1650.0
+metadata/ACTIVE_POS = Vector2(-25, 0)
 
 [node name="Mary" type="Sprite2D" parent="MaryDialogBox"]
 texture_filter = 1
@@ -68,7 +69,7 @@ offset_left = 846.0
 offset_top = 106.0
 offset_right = 1169.0
 offset_bottom = 378.0
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 30
 text = "Oh sorry! 
 
 You shouldn't go up from here!"
@@ -84,6 +85,7 @@ theme_override_font_sizes/font_size = 40
 text = "> \"sorry\""
 
 [node name="DialogTimer" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 
 [node name="SpeechDialogBox" type="Panel" parent="."]
@@ -92,6 +94,7 @@ offset_left = 5900.0
 offset_top = 1000.0
 offset_right = 7100.0
 offset_bottom = 1650.0
+metadata/ACTIVE_POS = Vector2(-25, -10)
 
 [node name="ProgressBar" type="ProgressBar" parent="SpeechDialogBox"]
 layout_mode = 0
@@ -116,25 +119,32 @@ show_percentage = false
 [node name="SpeechDisplay" type="Label" parent="SpeechDialogBox"]
 layout_mode = 0
 offset_left = 300.0
-offset_top = 100.0
+offset_top = 49.0
 offset_right = 900.0
-offset_bottom = 550.0
+offset_bottom = 499.0
 theme_override_font_sizes/font_size = 30
 text = "Dear People,
 
 I come here before you today..."
 horizontal_alignment = 1
+autowrap_mode = 2
 
-[node name="SpeechAns" type="Label" parent="SpeechDialogBox"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Answer" type="Label" parent="SpeechDialogBox"]
+offset_left = 429.0
+offset_top = 400.0
+offset_right = 747.0
+offset_bottom = 516.0
+theme_override_font_sizes/font_size = 40
+text = "> \"gulp\"
+> \"talk\""
+horizontal_alignment = 1
 
 [node name="EndScreen" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 5900.0
 offset_right = 7100.0
-offset_bottom = 650.0
+offset_bottom = 665.0
 
 [node name="Title" type="Label" parent="EndScreen"]
 layout_mode = 0
@@ -173,7 +183,7 @@ offset_top = 274.0
 offset_right = 456.0
 offset_bottom = 319.0
 theme_override_font_sizes/font_size = 30
-text = "Inputs Entered:"
+text = "Inputs entered:"
 
 [node name="CounterDisplay" type="Label" parent="EndScreen"]
 layout_mode = 0
@@ -193,23 +203,23 @@ offset_right = 900.0
 offset_bottom = 468.0
 theme_override_font_sizes/font_size = 40
 text = "Thank you for playing!
-> \"replay\"
 > \"credits\""
 horizontal_alignment = 1
 
 [node name="CreditsScreen" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 5900.0
 offset_top = 2000.0
 offset_right = 7100.0
-offset_bottom = 2650.0
+offset_bottom = 2678.0
 
 [node name="Title" type="Label" parent="CreditsScreen"]
 layout_mode = 0
-offset_left = 399.0
-offset_top = 95.0
-offset_right = 804.0
-offset_bottom = 220.0
+offset_left = 400.0
+offset_top = 6.0
+offset_right = 805.0
+offset_bottom = 131.0
 theme_override_font_sizes/font_size = 80
 text = "CREDITS"
 horizontal_alignment = 1
@@ -217,16 +227,25 @@ vertical_alignment = 1
 
 [node name="ExplanationDisplay" type="Label" parent="CreditsScreen"]
 layout_mode = 0
-offset_left = 294.0
-offset_top = 227.0
-offset_right = 916.0
-offset_bottom = 426.0
-theme_override_font_sizes/font_size = 30
-text = "Remember your 3Ps!
-(P) repare your interactions
-(P) ractice sufficiently
-check your (P) rogress"
+offset_left = 94.0
+offset_top = 115.0
+offset_right = 1110.0
+offset_bottom = 670.0
+theme_override_font_sizes/font_size = 18
+text = "Game by: Ulrico N Orlando
+
+This game is meant to illustrate 2 things: 1. How anxiety affects our perspective and potentially our ability to form speech, and 2. how communication is omnipresent, from giving ourselves instructions to chatting with our friends. 
+
+From my own experience of giving speeches to an audience, whether it is to two people or in front of a whole school, I have been met with anxiety and stress which affects how I communicate and interpret others. To overcome this, I intentionally put a lot of focus on what I say to others and what I tell myself - which becomes practice in communicating. Even if it does not simulate a speech, it still makes me a better communicator overall - and thus improve my speeches in the long run!
+
+Remember your 3Ps!
+(P) repare your interactions/speech
+(P) ractice communicating intentionally
+check your (P) rogress
+
+Alt + F4 to exit game!"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="RedFlash" type="Panel" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -248,6 +267,6 @@ theme_override_colors/font_placeholder_color = Color(0.619608, 0.619608, 0.61960
 theme_override_font_sizes/font_size = 40
 placeholder_text = "insert input here"
 alignment = 1
-max_length = 12
+max_length = 13
 caret_blink = true
 caret_force_displayed = true

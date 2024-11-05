@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cgqjs5p6cikq1"]
+[gd_scene load_steps=13 format=3 uid="uid://cgqjs5p6cikq1"]
 
 [ext_resource type="PackedScene" uid="uid://cksx6ci0liy7w" path="res://Scenes/BlackWall.tscn" id="1_0dg7r"]
 [ext_resource type="Texture2D" uid="uid://c6h43h0dse3qb" path="res://Assets/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Tilesets/Wooden_House_Walls_Tilset.png" id="1_1u4tw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b7bn8cjfgpveb" path="res://Scenes/Speech.tscn" id="6_30hlh"]
 [ext_resource type="PackedScene" uid="uid://bffvse0lfnm1v" path="res://Scenes/Alex.tscn" id="6_bhdrb"]
 [ext_resource type="PackedScene" uid="uid://dfkcf4dnlfnkx" path="res://Scenes/Stage.tscn" id="7_sf1x1"]
+[ext_resource type="AudioStream" uid="uid://b3ixjp1aip1d0" path="res://Assets/Caketown 1.mp3" id="10_ytqxo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5kxkc"]
 texture = ExtResource("1_1u4tw")
@@ -64,7 +65,7 @@ position = Vector2(697, -17)
 position = Vector2(550, 150)
 
 [node name="Alex" parent="." instance=ExtResource("6_bhdrb")]
-position = Vector2(450, 750)
+position = Vector2(750, 750)
 
 [node name="Speech" parent="." groups=["Mic"] instance=ExtResource("6_30hlh")]
 position = Vector2(650, 50)
@@ -173,7 +174,7 @@ position = Vector2(550, 600)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_ka1di")]
 texture_filter = 1
-position = Vector2(50, 750)
+position = Vector2(250, 750)
 
 [node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
 
@@ -183,3 +184,29 @@ offset_left = -575.0
 offset_top = -325.0
 offset_right = -575.0
 offset_bottom = -325.0
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = -253.0
+offset_top = 622.0
+offset_right = -29.0
+offset_bottom = 856.0
+text = "Hello!
+To start playing, click on the input line and type the following words to move:
+> \"right\" to go right
+> \"left\" to go left
+> \"hi\" to talk to people
+
+Go talk to Alex! =>"
+autowrap_mode = 2
+
+[node name="Instructions2" type="Label" parent="."]
+offset_left = 577.0
+offset_top = -100.0
+offset_right = 801.0
+offset_bottom = -74.0
+text = "Talk to the mic!"
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_ytqxo")
+autoplay = true

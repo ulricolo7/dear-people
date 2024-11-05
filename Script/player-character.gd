@@ -8,7 +8,8 @@ var TOP_BOUNDARY = 50
 var BOTTOM_BOUNDARY = 750
 
 var char_just_moved = false
-var is_wasd_enabled = true
+var is_keys_enabled = false
+var is_moving = true
 var is_elevated = false
 
 var DIRECTIONS = ["UP", "RIGHT", "DOWN", "LEFT"]
@@ -33,8 +34,8 @@ func _ready():
 func _process(delta):
 	if char_just_moved:
 		pass
-	elif is_wasd_enabled:
-		moving()
+	elif is_keys_enabled && is_moving:
+		keys()
 	
 	if !Input.is_anything_pressed():
 		idle()
@@ -87,7 +88,7 @@ func idle():
 		
 	char_just_moved = false
 
-func moving():
+func keys():
 	if Input.is_action_pressed("move_down"):
 		move_down()
 	elif Input.is_action_pressed("move_up"):
@@ -98,11 +99,14 @@ func moving():
 		move_right()
 
 func is_player_moving():
-	return is_wasd_enabled
+	return is_moving
 
 func toggle_movement():
-	is_wasd_enabled = !is_wasd_enabled
+	is_moving = !is_moving
 	
+func enable_keys():
+	is_keys_enabled = true
+
 func check_person():
 	if curr_direction == npc_loc:
 		return npc_name
